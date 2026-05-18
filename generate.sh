@@ -1,5 +1,7 @@
 #! /bin/sh
 
+set -e
+
 # Check if ffmpeg is installed
 if ! [ -x "$(command -v ffmpeg)" ]; then
   echo 'Error: ffmpeg is not installed.' >&2
@@ -9,12 +11,6 @@ fi
 # Check if imagemagick is installed
 if ! [ -x "$(command -v magick)" ]; then
   echo 'Error: imagemagick is not installed.' >&2
-  exit 1
-fi
-
-# Check if firefox is installed
-if ! [ -x "$(command -v firefox)" ]; then
-  echo 'Error: firefox is not installed.' >&2
   exit 1
 fi
 
@@ -103,6 +99,4 @@ magick "$input_image" \
     -annotate +0+40 "$SUBTITLE" \
     "$output_image"
 
-firefox "frame.png"
-
-echo "Done"
+echo "Generated frame.png"
